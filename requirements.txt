@@ -1,4 +1,3 @@
-ipython
 pdf2image
 gTTS
 python-pptx

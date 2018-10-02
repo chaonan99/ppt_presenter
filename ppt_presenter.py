@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-import tempfile
 import os
+import tempfile
 import argparse
 from subprocess import call
 
@@ -11,13 +11,11 @@ from pdf2image import convert_from_path
 from pptx import Presentation
 from gtts import gTTS
 
+
 __author__ = ['chaonan99']
 
 
-def ppt_presenter(pptx_path, pdf_path, output_path=None):
-    output_path = output_path or 'present.mp4'
-
-    # temp_path = './dump'
+def ppt_presenter(pptx_path, pdf_path, output_path):
     with tempfile.TemporaryDirectory() as temp_path:
         images_from_path = convert_from_path(pdf_path)
         prs = Presentation(pptx_path)
@@ -56,16 +54,12 @@ def ffmpeg_concat(video_list_str, out_path):
 
 
 def main():
-    # ffmpeg -loop 1 -i image.jpg -i audio.wav -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest out.mp4
-    # ffmpeg -loop 1 -y -i image8.jpg -i sound11.amr -shortest -acodec copy -vcodec mjpeg result.avi
-    # ffmpeg -f concat -safe 0 -i mylist.txt -c copy output
     parser = argparse.ArgumentParser(description='PPT Presenter help.')
     parser.add_argument('--pptx', help='input pptx path')
     parser.add_argument('--pdf', help='input pdf path')
     parser.add_argument('-o', '--output', help='output path')
     args = parser.parse_args()
     ppt_presenter(args.pptx, args.pdf, args.output)
-
 
 
 if __name__ == '__main__':
