@@ -1,5 +1,9 @@
 # PPT Presenter
 
+PPT Presenter converts a `.pptx` file to a video, and read out speaker's notes along slides using text to speech technique.
+
+## Usage
+
 * To get started, clone this repo
 ```
 git clone https://github.com/chaonan99/ppt_presenter.git
