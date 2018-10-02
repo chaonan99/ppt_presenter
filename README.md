@@ -9,6 +9,7 @@ cd ppt_presenter
 ```
 pip install -r requirements.txt
 ```
+* You also need [`ffmpeg`](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg)
 * Watch the video `example/test.mp4` (created by `ppt_presenter`)
 
 [![Alt text](https://img.youtube.com/vi/kMCZuAwFOVI/0.jpg)](https://www.youtube.com/watch?v=kMCZuAwFOVI)

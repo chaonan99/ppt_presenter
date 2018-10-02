@@ -15,6 +15,11 @@ from gtts import gTTS
 __author__ = ['chaonan99']
 
 
+## Sometimes ffmpeg is avconv
+FFMPEG_NAME = 'ffmpeg'
+# FFMPEG_NAME = 'avconv'
+
+
 def ppt_presenter(pptx_path, pdf_path, output_path):
     with tempfile.TemporaryDirectory() as temp_path:
         images_from_path = convert_from_path(pdf_path)
@@ -41,15 +46,15 @@ def ppt_presenter(pptx_path, pdf_path, output_path):
 def ffmpeg_call(image_path, audio_path, temp_path, i):
     out_path_mp4 = os.path.join(temp_path, 'frame_{}.mp4'.format(i))
     out_path_ts = os.path.join(temp_path, 'frame_{}.ts'.format(i))
-    call(['avconv', '-loop', '1', '-y', '-i', image_path, '-i', audio_path,
+    call([FFMPEG_NAME, '-loop', '1', '-y', '-i', image_path, '-i', audio_path,
           '-c:v', 'libx264', '-tune', 'stillimage', '-c:a', 'libfdk_aac',
           '-b:a', '192k', '-pix_fmt', 'yuv420p', '-shortest', out_path_mp4])
-    call(['avconv', '-y', '-i', out_path_mp4, '-c', 'copy',
+    call([FFMPEG_NAME, '-y', '-i', out_path_mp4, '-c', 'copy',
           '-bsf:v', 'h264_mp4toannexb', '-f', 'mpegts', out_path_ts])
 
 
 def ffmpeg_concat(video_list_str, out_path):
-    call(['avconv', '-y', '-f', 'mpegts', '-i', '{}'.format(video_list_str),
+    call([FFMPEG_NAME, '-y', '-f', 'mpegts', '-i', '{}'.format(video_list_str),
           '-c', 'copy', '-bsf:a', 'aac_adtstoasc', out_path])
 
 
