@@ -16,8 +16,8 @@ __author__ = ['chaonan99']
 
 
 ## Sometimes ffmpeg is avconv
-FFMPEG_NAME = 'ffmpeg'
-# FFMPEG_NAME = 'avconv'
+# FFMPEG_NAME = 'ffmpeg'
+FFMPEG_NAME = 'avconv'
 
 
 def ppt_presenter(pptx_path, pdf_path, output_path):
